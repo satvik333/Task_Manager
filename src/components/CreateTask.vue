@@ -27,6 +27,7 @@
         <button type="submit" class="create-button">Create</button>
       </div>
     </form>
+    <button class="back-button" @click="goBack">Go Back</button>
   </div>
 </template>
 
@@ -55,6 +56,10 @@ const createTask = () => {
   addNewTask(payload);
   router.push("/dashboard");
 };
+
+const goBack = () => {
+  router.go(-1); 
+}
 </script>
 
 <style scoped>
@@ -91,6 +96,17 @@ input[type="text"] {
 
 .create-button {
   background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.back-button {
+  background-color: #007bff;
+  margin-top: 20px;
   color: white;
   padding: 10px 20px;
   border: none;

@@ -51,6 +51,12 @@ export async function loginUser(email, password) {
   }
 }
 
+export async function logOutUser() {
+  const endpoint = '/logoutuser';
+  const method = 'POST';
+  const body = null;
+  return await makeApiCall(endpoint, method, body);
+}
 
 export async function registerUser(userName, email, password) {
   const endpoint = '/registeruser';

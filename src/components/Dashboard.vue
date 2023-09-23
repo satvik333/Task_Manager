@@ -8,6 +8,7 @@
     >
       Click Here to Admin Page
     </button>
+    <button class="buttons" @click="logOut">Log Out</button>
     <div class="table-container">
       <table>
         <thead>
@@ -83,6 +84,7 @@ import { useRouter } from "vue-router";
 import {
   getTasksData,
   deleteTask,
+  logOutUser,
   updateTask as updateTaskApi,
 } from "../services/userService";
 import { onBeforeMount } from "vue";
@@ -101,6 +103,11 @@ const deleteCurrentTask = async (taskId) => {
   await deleteTask(taskId);
   getTasks();
 };
+
+const logOut = async () => {
+  const res = await logOutUser();
+  if (res.message) router.push('login');
+}
 
 const editTask = (task) => {
   taskToUpdate.value = { ...task };

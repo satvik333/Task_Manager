@@ -1,5 +1,6 @@
 <template>
   <div class="table-container">
+    <button class="back-button" @click="goBack">Go Back</button>
     <table>
       <thead>
         <tr>
@@ -21,19 +22,35 @@
 import { onBeforeMount } from "vue";
 import { getUsersData } from "../services/userService";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
 const users = ref([]);
+const router = useRouter();
 
 onBeforeMount(async () => {
   const response = await getUsersData();
   users.value = response.users;
 });
+
+const goBack = () => {
+  router.go(-1); 
+}
 </script>
 
 <style scoped>
 .table-container {
   max-width: 800px;
   margin: 0 auto;
+}
+
+.back-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 table {
